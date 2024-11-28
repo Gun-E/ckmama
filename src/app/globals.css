@@ -33,13 +33,13 @@ img {
 }
 .charimg{
   position: absolute;
-  top: 192px;
+  top: 172px;
   left: 50%;
   transform: translateX(-50%);
 }
 .chattext{
   position: absolute;
-  top: 106px;
+  top: 86px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -47,7 +47,7 @@ img {
   position: absolute;
   font-size: 24px;
   font-weight: 600;
-  top: 122px;
+  top: 102px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -61,7 +61,7 @@ img {
   position: absolute;
   width: 286px;
   height: 161px;
-  top: 509px;
+  top: 459px;
   left: 50%;
   transform: translateX(-50%);
   display: grid;
@@ -88,16 +88,6 @@ img {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 눌렀을 때 그림자 변경 */
 }
 
-.summitbtn{
-  position: absolute;
-  background-color: #2ab162;
-  border-radius: 10px;
-  width: 343px;
-  height: 52px;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 .btntext{
   color: white;
   font-weight: bold;
@@ -120,7 +110,7 @@ img {
 }
 .modal-close-btn {
   position: absolute;
-  top: 680px;
+  top: 560px;
   left: 50%;
   transform: translateX(-50%);
   width: 343px;
@@ -134,7 +124,7 @@ img {
 }
 .charkkang{
   position: absolute;
-  top: 120px;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -161,27 +151,28 @@ img {
     opacity: 0; /* 완전 투명 */
   }
   50% {
-    top: 170px; /* 최하단 위치 */
+    top: 110px; /* 최하단 위치 */
     font-size: 80px; /* 최대 크기 */
     opacity: 1; /* 완전 보임 */
   }
   70% {
-    top: 150px; /* 약간 위로 반동 */
+    top: 90px; /* 약간 위로 반동 */
     font-size: 65px; /* 약간 축소 */
   }
   85% {
-    top: 165px; /* 다시 아래로 이동 */
+    top: 105px; /* 다시 아래로 이동 */
     font-size: 70px; /* 살짝 커짐 */
   }
   100% {
-    top: 160px; /* 최종 위치 */
+    top: 100px; /* 최종 위치 */
     font-size: 60px; /* 최종 크기 */
   }
 }
 
 .modal-text{
   position: absolute;
-  top: 60px;
+  z-index: 999;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 25px;
