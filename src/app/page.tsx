@@ -1,101 +1,97 @@
+"use client"
+
+import {useState} from "react";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
+    const [selectedButton, setSelectedButton] = useState<string>(""); // 선택된 버튼 상태
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    const handleButtonClick = (buttonName: string) => {
+        if (buttonName !== "광파오븐") {
+            setSelectedButton(buttonName); // 클릭된 버튼 이름 설정
+            setIsModalOpen(true); // 모달 열기
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false); // 모달 닫기
+    };
+
+    // 선택된 버튼에 맞는 이미지 경로를 설정하는 함수
+    const getImageSrc = (buttonName: string) => {
+        switch (buttonName) {
+            case "프라이팬":
+                return "/images/kkang프라이팬.svg";
+            case "전자레인지":
+                return "/images/kkang전자레인지.svg";
+            case "냄비":
+                return "/images/kkang냄비.svg";
+            default:
+                return "";
+        }
+    };
+
+    return (
+        <div className="ckcontainer">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+                src="/images/cklogo.svg"
+                alt="cklogo"
+                style={{objectFit: "cover"}}
+                className="logo"
+                width={119}
+                height={40}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <Image
+                src="/images/chattext.svg"
+                alt="chattext"
+                style={{objectFit: "cover"}}
+                className="chattext"
+                width={296}
+                height={69}
+            />
+            <p className="chatbox">잘 골라봐!</p>
+            <Image
+                src="/images/char.svg"
+                alt="char"
+                style={{objectFit: "cover"}}
+                className="charimg"
+                width={158}
+                height={273.11}
+            />
+            <div className="gridcontainer">
+                <button className="gridbtn" onClick={() => handleButtonClick("광파오븐")}>
+                    광파오븐
+                </button>
+                <button className="gridbtn" onClick={() => handleButtonClick("프라이팬")}>
+                    프라이팬
+                </button>
+                <button className="gridbtn" onClick={() => handleButtonClick("전자레인지")}>
+                    전자레인지
+                </button>
+                <button className="gridbtn" onClick={() => handleButtonClick("냄비")}>
+                    냄비
+                </button>
+            </div>
+
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <p className="modal-text">다시 생각해보자~</p>
+                        <p className="kkangtext">깡!</p>
+                        {/* 선택된 버튼에 맞는 이미지 표시 */}
+                        <Image
+                            src={getImageSrc(selectedButton)}
+                            alt="charkkang"
+                            style={{objectFit: "cover"}}
+                            className="charkkang"
+                            width={393}
+                            height={489}
+                        />
+                        <button className="modal-close-btn" onClick={closeModal}>재도전</button>
+                    </div>
+                </div>
+            )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }

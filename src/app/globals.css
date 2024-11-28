@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/variable/pretendardvariable.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +17,176 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pretendard Variable", sans-serif;
+  background-color: #EFF0F4;
+}
+img {
+  -webkit-user-drag: none; /* Safari와 WebKit 브라우저에서 지원 */
+}
+.logo{
+  position: absolute;
+  top: 80px;
+  left: 25px;
+}
+.charimg{
+  position: absolute;
+  top: 252px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.chattext{
+  position: absolute;
+  top: 166px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.chatbox{
+  position: absolute;
+  font-size: 24px;
+  font-weight: 600;
+  top: 182px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ckcontainer {
+  position: relative;
+  background-color: #ffffff;
+  width: 393px;
+  height: 852px;
+}
+.gridcontainer {
+  position: absolute;
+  width: 286px;
+  height: 161px;
+  bottom: 122px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(2, 135px);
+  grid-template-rows: repeat(2, 73px);
+  gap: 16px;
+}
+.gridbtn{
+  background-color: #ededed;
+  border-radius: 10px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: black;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+.gridbtn:active {
+  background-color: #d3d3d3; /* 진한 회색 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 눌렀을 때 그림자 변경 */
+}
+
+.summitbtn{
+  position: absolute;
+  background-color: #2ab162;
+  border-radius: 10px;
+  width: 343px;
+  height: 52px;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btntext{
+  color: white;
+  font-weight: bold;
+}
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.modal-close-btn {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 343px;
+  height: 52px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  background-color: #2ab162;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.charkkang{
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.kkangtext{
+  position: absolute;
+  font-size: 60px;
+  font-weight: 600;
+  top: -100px;
+  left: 30px;
+  z-index: 999;
+  animation: slideDownBounce 0.8s ease-out forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideDownBounce {
+  0% {
+    top: -100px; /* 화면 위에서 시작 */
+    opacity: 0; /* 완전 투명 */
+  }
+  50% {
+    top: 170px; /* 최하단 위치 */
+    font-size: 80px; /* 최대 크기 */
+    opacity: 1; /* 완전 보임 */
+  }
+  70% {
+    top: 150px; /* 약간 위로 반동 */
+    font-size: 65px; /* 약간 축소 */
+  }
+  85% {
+    top: 165px; /* 다시 아래로 이동 */
+    font-size: 70px; /* 살짝 커짐 */
+  }
+  100% {
+    top: 160px; /* 최종 위치 */
+    font-size: 60px; /* 최종 크기 */
+  }
+}
+
+.modal-text{
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+  font-weight: 600;
+  animation: fadeIn 1.8s ease-in forwards;
 }
