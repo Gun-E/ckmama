@@ -33,13 +33,13 @@ img {
 }
 .charimg{
   position: absolute;
-  top: 252px;
+  top: 192px;
   left: 50%;
   transform: translateX(-50%);
 }
 .chattext{
   position: absolute;
-  top: 166px;
+  top: 106px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -47,7 +47,7 @@ img {
   position: absolute;
   font-size: 24px;
   font-weight: 600;
-  top: 182px;
+  top: 122px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -61,7 +61,7 @@ img {
   position: absolute;
   width: 286px;
   height: 161px;
-  top: 569px;
+  top: 509px;
   left: 50%;
   transform: translateX(-50%);
   display: grid;
@@ -120,7 +120,7 @@ img {
 }
 .modal-close-btn {
   position: absolute;
-  top: 740px;
+  top: 680px;
   left: 50%;
   transform: translateX(-50%);
   width: 343px;
@@ -134,7 +134,7 @@ img {
 }
 .charkkang{
   position: absolute;
-  top: 180px;
+  top: 120px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -181,7 +181,7 @@ img {
 
 .modal-text{
   position: absolute;
-  top: 80px;
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 25px;
