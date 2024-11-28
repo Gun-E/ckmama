@@ -22,11 +22,11 @@ export default function Home() {
     const getImageSrc = (buttonName: string) => {
         switch (buttonName) {
             case "프라이팬":
-                return "/images/kkang프라이팬.svg";
+                return "/images/kkang프라이팬.png";
             case "전자레인지":
-                return "/images/kkang전자레인지.svg";
+                return "/images/kkang전자레인지.png";
             case "냄비":
-                return "/images/kkang냄비.svg";
+                return "/images/kkang냄비.png";
             default:
                 return "";
         }
