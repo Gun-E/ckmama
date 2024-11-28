@@ -6,13 +6,13 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #ffffff;
   }
 }
 
@@ -21,14 +21,14 @@ body {
   justify-content: center;
   align-items: center;
   font-family: "Pretendard Variable", sans-serif;
-  background-color: #EFF0F4;
+  background-color: #ffffff;
 }
 img {
   -webkit-user-drag: none; /* Safari와 WebKit 브라우저에서 지원 */
 }
 .logo{
   position: absolute;
-  top: 80px;
+  top: 20px;
   left: 25px;
 }
 .charimg{
@@ -54,14 +54,14 @@ img {
 .ckcontainer {
   position: relative;
   background-color: #ffffff;
-  width: 393px;
-  height: 852px;
+  width: 100%;
+  height: 100%;
 }
 .gridcontainer {
   position: absolute;
   width: 286px;
   height: 161px;
-  bottom: 122px;
+  top: 569px;
   left: 50%;
   transform: translateX(-50%);
   display: grid;
@@ -103,16 +103,14 @@ img {
   font-weight: bold;
 }
 .modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 999;
+  background-color: rgba(255, 255, 255);
 }
 
 .modal-content{
@@ -122,7 +120,7 @@ img {
 }
 .modal-close-btn {
   position: absolute;
-  bottom: 60px;
+  top: 740px;
   left: 50%;
   transform: translateX(-50%);
   width: 343px;
