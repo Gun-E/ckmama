@@ -181,7 +181,6 @@ export default function Home() {
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <p className="modal-text">다시 생각해보자~</p>
-                        <p className="kkangtext">깡!</p>
                         <Image
                             src={getImageSrc(selectedButton)}
                             alt="charkkang"
