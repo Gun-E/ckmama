@@ -215,7 +215,7 @@ export default function Home() {
                                 ? "완료!"
                                 : ovenState === "풀오픈" && !trayInserted
                                     ? "트레이를 넣어보세요!"
-                                    : "광파오븐을 클릭해보세요!"}
+                                    : "오븐을 클릭해보세요!"}
                         </p>
 
                         <Image
