@@ -23,9 +23,9 @@ body {
   font-family: "Pretendard Variable", sans-serif;
   background-color: #ffffff;
 }
-img {
-  -webkit-user-drag: none; /* Safari와 WebKit 브라우저에서 지원 */
-}
+/*img {*/
+/*  -webkit-user-drag: none; !* Safari와 WebKit 브라우저에서 지원 *!*/
+/*}*/
 .logo{
   position: absolute;
   top: 20px;
@@ -102,7 +102,16 @@ img {
   z-index: 999;
   background-color: rgba(255, 255, 255);
 }
-
+.new-modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.8);
+}
 .modal-content{
   position: relative;
   width: 100%;
@@ -178,4 +187,34 @@ img {
   font-size: 25px;
   font-weight: 600;
   animation: fadeIn 1.8s ease-in forwards;
+}
+.new-modal-textbox{
+  position: absolute;
+  width: 350px;
+  height: 45px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.new-modal-text{
+  position: absolute;
+  font-size: 21px;
+  font-weight: 600;
+  top: 37px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.oven{
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tray{
+  position: absolute;
+  top: 440px;
+  left: 50%;
+  transform: translateX(-50%);
 }

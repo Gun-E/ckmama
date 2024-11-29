@@ -1,32 +1,72 @@
-"use client"
+"use client";
 
-import {useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
-    const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
-    const [selectedButton, setSelectedButton] = useState<string>(""); // 선택된 버튼 상태
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+    const [selectedButton, setSelectedButton] = useState<string>("");
+    const [ovenState, setOvenState] = useState<"기본" | "미들오픈" | "풀오픈" | "인풋 오픈" | "닫음">("기본");
+    const [trayInserted, setTrayInserted] = useState(false);
 
     const handleButtonClick = (buttonName: string) => {
-        if (buttonName !== "광파오븐") {
-            setSelectedButton(buttonName); // 클릭된 버튼 이름 설정
-            setIsModalOpen(true); // 모달 열기
+        if (buttonName === "광파오븐") {
+            setIsNewModalOpen(true);
+        } else {
+            setSelectedButton(buttonName);
+            setIsModalOpen(true);
         }
     };
 
     const closeModal = () => {
-        setIsModalOpen(false); // 모달 닫기
+        setIsModalOpen(false);
+        setIsNewModalOpen(false);
+        setOvenState("기본");
+        setTrayInserted(false);
     };
 
-    // 선택된 버튼에 맞는 이미지 경로를 설정하는 함수
-    const getImageSrc = (buttonName: string) => {
-        switch (buttonName) {
-            case "프라이팬":
-                return "/images/kkang프라이팬.png";
-            case "전자레인지":
-                return "/images/kkang전자레인지.png";
-            case "냄비":
-                return "/images/kkang냄비.png";
+    const toggleOvenState = () => {
+        if (ovenState === "기본") {
+            setOvenState("미들오픈");
+        } else if (ovenState === "미들오픈") {
+            setOvenState("풀오픈");
+        } else if (ovenState === "풀오픈" && trayInserted) {
+            setOvenState("기본");
+            setTrayInserted(false); // 트레이 제거 후 초기화
+        } else if (ovenState === "인풋 오픈") {
+            setOvenState("닫음"); // 닫기 동작
+            setTrayInserted(false); // 트레이 상태 초기화
+        }
+    };
+
+    const handleDrop = () => {
+        if (ovenState === "풀오픈" && !trayInserted) {
+            setTrayInserted(true);
+            setOvenState("인풋 오픈");
+        }
+    };
+
+    const handleDragStart = (event: React.DragEvent) => {
+        event.dataTransfer.setData("text/plain", "tray");
+    };
+
+    const handleDragOver = (event: React.DragEvent) => {
+        event.preventDefault(); // 드롭 가능하도록 설정
+    };
+
+    const getOvenImage = () => {
+        switch (ovenState) {
+            case "기본":
+                return "/images/oven.svg";
+            case "미들오픈":
+                return "/images/middle-open.svg";
+            case "풀오픈":
+                return "/images/full-open.svg";
+            case "인풋 오픈":
+                return "/images/input-open.svg";
+            case "닫음":
+                return "/images/oven.svg";
             default:
                 return "";
         }
@@ -37,7 +77,7 @@ export default function Home() {
             <Image
                 src="/images/cklogo.svg"
                 alt="cklogo"
-                style={{objectFit: "cover"}}
+                style={{ objectFit: "cover" }}
                 className="logo"
                 width={119}
                 height={40}
@@ -45,7 +85,7 @@ export default function Home() {
             <Image
                 src="/images/chattext.svg"
                 alt="chattext"
-                style={{objectFit: "cover"}}
+                style={{ objectFit: "cover" }}
                 className="chattext"
                 width={296}
                 height={69}
@@ -54,7 +94,7 @@ export default function Home() {
             <Image
                 src="/images/char.svg"
                 alt="char"
-                style={{objectFit: "cover"}}
+                style={{ objectFit: "cover" }}
                 className="charimg"
                 width={158}
                 height={273.11}
@@ -79,11 +119,10 @@ export default function Home() {
                     <div className="modal-content">
                         <p className="modal-text">다시 생각해보자~</p>
                         <p className="kkangtext">깡!</p>
-                        {/* 선택된 버튼에 맞는 이미지 표시 */}
                         <Image
                             src={getImageSrc(selectedButton)}
                             alt="charkkang"
-                            style={{objectFit: "cover"}}
+                            style={{ objectFit: "cover" }}
                             className="charkkang"
                             width={393}
                             height={489}
@@ -92,6 +131,52 @@ export default function Home() {
                     </div>
                 </div>
             )}
+
+            {isNewModalOpen && (
+                <div className="new-modal-overlay">
+                    <div className="modal-content" onDragOver={handleDragOver} onDrop={handleDrop}>
+                        <div className="new-modal-textbox"></div>
+                        <p className="new-modal-text">광파오븐 시뮬레이션</p>
+                        <Image
+                            src={getOvenImage()}
+                            alt="oven"
+                            style={{ objectFit: "cover" }}
+                            className="oven"
+                            width={261.52}
+                            height={184.13}
+                            onClick={toggleOvenState}
+                        />
+                        {ovenState === "풀오픈" && !trayInserted && (
+                            <Image
+                                src="/images/트레이.svg"
+                                alt="tray"
+                                style={{ objectFit: "cover" }}
+                                className="tray"
+                                width={297}
+                                height={120}
+                                draggable
+                                onDragStart={handleDragStart}
+                            />
+                        )}
+                        {ovenState === "닫음" && (
+                            <button className="modal-close-btn" onClick={closeModal}>닫기</button>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
+}
+
+function getImageSrc(buttonName: string): string {
+    switch (buttonName) {
+        case "프라이팬":
+            return "/images/kkang프라이팬.png";
+        case "전자레인지":
+            return "/images/kkang전자레인지.png";
+        case "냄비":
+            return "/images/kkang냄비.png";
+        default:
+            return "";
+    }
 }
