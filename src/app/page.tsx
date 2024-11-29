@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function Home() {
@@ -9,6 +9,7 @@ export default function Home() {
     const [selectedButton, setSelectedButton] = useState<string>("");
     const [ovenState, setOvenState] = useState<"기본" | "미들오픈" | "풀오픈" | "인풋 오픈" | "닫음">("기본");
     const [trayInserted, setTrayInserted] = useState(false);
+    const trayRef = useRef<HTMLImageElement | null>(null); // 트레이 이미지 참조
 
     // 모달이 열릴 때 스크롤 비활성화
     useEffect(() => {
@@ -64,8 +65,34 @@ export default function Home() {
         event.dataTransfer.setData("text/plain", "tray");
     };
 
+    // 모바일 터치 드래그 처리
+    const handleTouchStart = (event: React.TouchEvent) => {
+        const touch = event.touches[0];
+        if (trayRef.current) {
+            trayRef.current.style.position = "absolute";
+            trayRef.current.style.left = `${touch.pageX - trayRef.current.clientWidth / 2}px`;
+            trayRef.current.style.top = `${touch.pageY - trayRef.current.clientHeight / 2}px`;
+        }
+    };
+
+    const handleTouchMove = (event: React.TouchEvent) => {
+        const touch = event.touches[0];
+        if (trayRef.current) {
+            trayRef.current.style.left = `${touch.pageX - trayRef.current.clientWidth / 2}px`;
+            trayRef.current.style.top = `${touch.pageY - trayRef.current.clientHeight / 2}px`;
+        }
+    };
+
+    const handleTouchEnd = () => {
+        if (trayRef.current) {
+            trayRef.current.style.position = "relative"; // 원래 위치로 돌아가기
+            handleDrop(); // 드롭 처리
+        }
+    };
+
+    // 드래그가 가능한 영역에서 드래그 오버 처리
     const handleDragOver = (event: React.DragEvent) => {
-        event.preventDefault(); // 드롭 가능하도록 설정
+        event.preventDefault(); // 드래그가 가능하도록 설정
     };
 
     const getOvenImage = () => {
@@ -161,6 +188,7 @@ export default function Home() {
                         />
                         {ovenState === "풀오픈" && !trayInserted && (
                             <Image
+                                ref={trayRef}
                                 src="/images/트레이.svg"
                                 alt="tray"
                                 style={{ objectFit: "cover" }}
@@ -169,6 +197,9 @@ export default function Home() {
                                 height={120}
                                 draggable
                                 onDragStart={handleDragStart}
+                                onTouchStart={handleTouchStart}
+                                onTouchMove={handleTouchMove}
+                                onTouchEnd={handleTouchEnd}
                             />
                         )}
                         {ovenState === "닫음" && (
