@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Home() {
@@ -9,8 +9,19 @@ export default function Home() {
     const [selectedButton, setSelectedButton] = useState<string>("");
     const [ovenState, setOvenState] = useState<"기본" | "미들오픈" | "풀오픈" | "인풋 오픈" | "닫음">("기본");
     const [trayInserted, setTrayInserted] = useState(false);
-    const [dragging, setDragging] = useState(false);
-    const [touchStartPos, setTouchStartPos] = useState({ x: 0, y: 0 });
+
+    // 모달이 열릴 때 스크롤 비활성화
+    useEffect(() => {
+        if (isModalOpen || isNewModalOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto"; // cleanup
+        };
+    }, [isModalOpen, isNewModalOpen]);
 
     const handleButtonClick = (buttonName: string) => {
         if (buttonName === "광파오븐") {
@@ -55,27 +66,6 @@ export default function Home() {
 
     const handleDragOver = (event: React.DragEvent) => {
         event.preventDefault(); // 드롭 가능하도록 설정
-    };
-
-    const handleTouchStart = (event: React.TouchEvent) => {
-        const touch = event.touches[0];
-        setTouchStartPos({ x: touch.clientX, y: touch.clientY });
-        setDragging(true);
-    };
-
-    const handleTouchMove = (event: React.TouchEvent) => {
-        if (dragging) {
-            const touch = event.touches[0];
-            const deltaX = touch.clientX - touchStartPos.x;
-            const deltaY = touch.clientY - touchStartPos.y;
-
-            // 필요시 드래그 이동 로직 추가 가능
-            console.log(`Touch moved: ${deltaX}, ${deltaY}`);
-        }
-    };
-
-    const handleTouchEnd = () => {
-        setDragging(false);
     };
 
     const getOvenImage = () => {
@@ -168,9 +158,6 @@ export default function Home() {
                             width={261.52}
                             height={184.13}
                             onClick={toggleOvenState}
-                            onTouchStart={handleTouchStart}
-                            onTouchMove={handleTouchMove}
-                            onTouchEnd={handleTouchEnd}
                         />
                         {ovenState === "풀오픈" && !trayInserted && (
                             <Image
