@@ -198,12 +198,30 @@ export default function Home() {
             {isNewModalOpen && (
                 <div className="new-modal-overlay">
                     <div className="modal-content" onDragOver={handleDragOver} onDrop={handleDrop}>
-                        <div className="new-modal-textbox"></div>
-                        <p className="new-modal-text">광파오븐을 클릭해보세요!</p>
+                        <div
+                            className="new-modal-textbox"
+                            style={{
+                                backgroundColor: ovenState === "닫음" ? "#2ab162" : "#ffffff",
+                                width: ovenState === "닫음" ? 100 : 300,
+                            }}
+                        ></div>
+                        <p
+                            className="new-modal-text"
+                            style={{
+                                color: ovenState === "닫음" ? "#FFFFFF" : "inherit",
+                            }}
+                        >
+                            {ovenState === "닫음"
+                                ? "완료!"
+                                : ovenState === "풀오픈" && !trayInserted
+                                    ? "트레이를 넣어보세요!"
+                                    : "광파오븐을 클릭해보세요!"}
+                        </p>
+
                         <Image
                             src={getOvenImage()}
                             alt="oven"
-                            style={{ objectFit: "cover" }}
+                            style={{objectFit: "cover"}}
                             className="oven"
                             width={261.52}
                             height={184.13}
