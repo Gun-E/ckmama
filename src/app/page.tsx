@@ -62,20 +62,21 @@ export default function Home() {
     };
 
     const handleDragStart = (event: React.DragEvent) => {
-        event.preventDefault();
-        event.dataTransfer.setData("text/plain", "tray");
+        event.preventDefault(); // 기본 동작을 방지
 
         if (trayRef.current) {
             const trayWidth = trayRef.current.clientWidth;
             const trayHeight = trayRef.current.clientHeight;
 
-            // 트레이의 위치를 중앙에 맞추기
+            // 드래그 포인터의 위치에서 트레이 크기의 절반을 빼서 트레이가 중앙에 위치하도록 설정
+            const offsetX = event.clientX - trayWidth / 2;
+            const offsetY = event.clientY - trayHeight / 2;
+
             trayRef.current.style.position = "absolute";
-            trayRef.current.style.left = `${event.clientX - trayWidth / 2}px`;
-            trayRef.current.style.top = `${event.clientY - trayHeight / 2}px`;
+            trayRef.current.style.left = `${offsetX}px`;
+            trayRef.current.style.top = `${offsetY}px`;
         }
     };
-
 
     const handleTouchStart = (event: React.TouchEvent) => {
         const touch = event.touches[0];
@@ -83,9 +84,13 @@ export default function Home() {
             const trayWidth = trayRef.current.clientWidth;
             const trayHeight = trayRef.current.clientHeight;
 
+            // 터치 시작 지점에서 트레이를 중앙으로 맞추기
+            const offsetX = touch.pageX - trayWidth / 2;
+            const offsetY = touch.pageY - trayHeight / 2;
+
             trayRef.current.style.position = "absolute";
-            trayRef.current.style.left = `${touch.pageX - trayWidth / 2}px`;
-            trayRef.current.style.top = `${touch.pageY - trayHeight / 2}px`;
+            trayRef.current.style.left = `${offsetX}px`;
+            trayRef.current.style.top = `${offsetY}px`;
         }
     };
 
@@ -95,8 +100,9 @@ export default function Home() {
             const trayWidth = trayRef.current.clientWidth;
             const trayHeight = trayRef.current.clientHeight;
 
-            trayRef.current.style.left = `${touch.pageX - trayWidth / 2}px`; // 드래그 포인터에서 트레이 크기의 절반을 빼서 가운데로 맞춤
-            trayRef.current.style.top = `${touch.pageY - trayHeight / 2}px`; // 드래그 포인터에서 트레이 크기의 절반을 빼서 가운데로 맞춤
+            // 터치 이동에 따라 트레이 위치 업데이트 (트레이 중심 맞추기)
+            trayRef.current.style.left = `${touch.pageX - trayWidth / 2}px`;
+            trayRef.current.style.top = `${touch.pageY - trayHeight / 2}px`;
         }
     };
 
