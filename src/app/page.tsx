@@ -64,7 +64,7 @@ export default function Home() {
         event.dataTransfer.setData("text/plain", "tray");
     };
 
-    const handleDragOver = (event: React.DragEvent) => {
+    const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault(); // 드롭 가능하도록 설정
     };
 
