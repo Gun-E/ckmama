@@ -7,11 +7,14 @@ export default function Home() {
 
         if (navigator.share) {
             try {
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const file = new File([blob], "hamburger.svg", { type: "image/svg+xml" });
+
                 await navigator.share({
                     title: "쿡힘마마 캐릭터 생성",
                     text: "내가 만든 쿡힘마마 캐릭터를 공유해보세요!",
-                    url: window.location.href,  // 현재 페이지 URL
-                    files: [new File([imageUrl], "hamburger.svg", { type: "image/svg+xml" })]  // 이미지 파일 공유
+                    files: [file],  // 이미지 파일만 공유
                 });
 
                 alert("공유가 완료되었습니다!");
