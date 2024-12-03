@@ -245,7 +245,7 @@ export default function Home() {
                             />
                         )}
                         {ovenState === "닫음" && (
-                            <Link href='/carmera' className="modal-close-btn">완료</Link>
+                            <Link href='/carmera' className="modal-close-btn">다음</Link>
                         )}
                     </div>
                 </div>
