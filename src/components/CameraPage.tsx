@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
-export default function CarmeraPage() {
+export default function CameraPage() {
     const [isCameraOn, setIsCameraOn] = useState(false);
     const [error, setError] = useState("");
     const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -13,9 +13,13 @@ export default function CarmeraPage() {
 
     useEffect(() => {
         if (isCameraOn) {
-            // 카메라 스트림 활성화
+            // 카메라 스트림 활성화 (후면 카메라 사용)
             navigator.mediaDevices
-                .getUserMedia({ video: true })
+                .getUserMedia({
+                    video: {
+                        facingMode: "environment",  // 후면 카메라 지정
+                    },
+                })
                 .then((stream) => {
                     if (videoRef.current) {
                         videoRef.current.srcObject = stream;
