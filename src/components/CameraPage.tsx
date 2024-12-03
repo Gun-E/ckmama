@@ -34,10 +34,6 @@ export default function CarmeraPage() {
         }
     }, [isCameraOn]);
 
-    const toggleCamera = () => {
-        setIsCameraOn(!isCameraOn);
-    };
-
     return (
         <div>
             <video
