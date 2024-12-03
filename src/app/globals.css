@@ -121,6 +121,9 @@ body {
   position: absolute;
   top: 560px;
   left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transform: translateX(-50%);
   width: 343px;
   height: 52px;
@@ -213,6 +216,24 @@ body {
   transform: translateX(-50%);
 }
 .tray{
+  position: absolute;
+  top: 440px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.carmera-frame{
+  position: absolute;
+  top: 230px;
+  left: 51%;
+  transform: translateX(-50%);
+}
+.info{
+  position: absolute;
+  top: 390px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.carmera-btn{
   position: absolute;
   top: 440px;
   left: 50%;

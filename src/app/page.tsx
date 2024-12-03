@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -244,7 +245,8 @@ export default function Home() {
                             />
                         )}
                         {ovenState === "닫음" && (
-                            <button className="modal-close-btn" onClick={closeModal}>닫기</button>
+
+                            <Link href='/carmera' className="modal-close-btn">닫기</Link>
                         )}
                     </div>
                 </div>
