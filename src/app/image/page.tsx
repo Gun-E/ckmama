@@ -63,7 +63,7 @@ export default function Home() {
             />
             {!imageUrl && (
                 <p className="hamburger-text">
-                    <strong>쿡힘마마</strong> 캐릭터 생성 중 {loadingText}
+                    <strong>쿡힘마마</strong> 캐릭터 <br/>생성 중 {loadingText}
                 </p>
             )}
             {imageUrl && (

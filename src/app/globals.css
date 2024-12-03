@@ -254,6 +254,7 @@ body {
   top: 270px;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 10px;
 }
 .hamburger-loding{
   position: absolute;
