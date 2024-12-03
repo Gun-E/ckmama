@@ -17,7 +17,9 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+      <div className="ckcontainer">
         {children}
+      </div>
       </body>
     </html>
   );

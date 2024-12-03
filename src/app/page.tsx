@@ -137,7 +137,7 @@ export default function Home() {
     };
 
     return (
-        <div className="ckcontainer">
+        <>
             <Image
                 src="/images/cklogo.svg"
                 alt="cklogo"
@@ -246,12 +246,12 @@ export default function Home() {
                         )}
                         {ovenState === "닫음" && (
 
-                            <Link href='/carmera' className="modal-close-btn">닫기</Link>
+                            <Link href='/carmera' className="modal-close-btn">완료</Link>
                         )}
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 
