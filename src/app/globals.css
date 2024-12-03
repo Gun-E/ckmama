@@ -239,3 +239,23 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+.itsme{
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hamburger{
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hamburger-text{
+  position: absolute;
+  font-size: 21px;
+  text-align: center;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
