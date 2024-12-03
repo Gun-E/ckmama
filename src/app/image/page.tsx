@@ -50,8 +50,7 @@ export default function Home() {
                 const file = new File([blob], "generated-image.png", { type: "image/png" });
 
                 await navigator.share({
-                    title: "쿡힘마마 캐릭터 생성",
-                    text: "내가 만든 쿡힘마마 캐릭터를 공유해보세요!",
+                    text: "내가 만든 쿡힘마마 캐릭터!!",
                     files: [file],  // 이미지 파일만 공유
                 });
 
